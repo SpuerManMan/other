@@ -1,0 +1,23 @@
+
+
+启动 rethinkdb 
+
+rethinkdb --http-port 8090
+
+
+启动  atx-server
+
+C:\Users\cmd>cd %GOPATH%\src\github.com\openatx\atx-server
+
+atx-server --port 8000
+
+python -m uiautomator2 init 192.168.7.106:8000
+
+python -m uiautomator2 init 172.16.120.20:8000 
+
+https://music.163.com/api/android/download/latest2/CloudMusic_official_5.3.1.588831.apk
+
+
+pip install --pre --upgrade weditor
+
+python -m weditor

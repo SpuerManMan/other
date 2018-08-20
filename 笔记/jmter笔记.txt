@@ -1,0 +1,35 @@
+生成日期函数：
+BeanShell表达式
+${__BeanShell(${__time(yyyy)})}-${__BeanShell(${__time(MM)},)}-${__BeanShell(${__time(dd,)})}
+JavaScript表达式
+
+Beanshell内置对象vars对Jmeter变量进行存取操作
+vars.get("login_pw") //从Jmeter中获取变量login_pw的值
+vars.put("loginpw",login); //把beanshell中login的值存到Jmeter变量loginpw中
+
+BeanShell PreProcessor的Java源码：
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+log.info(Label); //输出原件的名称
+try{
+    log.info("*****时间偏移*****"); //输出日志
+    Date date =new Date();  //获取当前时间
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+    String nowDate = sf.format(date);
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(sf.parse(nowDate));//初始化为当前时间
+    cal.add(Calendar.DAY_OF_YEAR,+1);  //后一天
+    String orderDate = sf.format(cal.getTime());
+    cal.setTime(sf.parse(nowDate));
+    cal.add(Calendar.DAY_OF_YEAR,+365);  //后365天，即一年
+    String mouthDate = sf.format(cal.getTime());
+    vars.put("dayDate",orderDate);//把beanshell的变量传给Jmeter
+    vars.put("yearDate",mouthDate);
+    log.info("输出计算后的两个时间");
+    log.info("dayDate="+orderDate);
+    log.info("yearDate="+mouthDate);
+
+}
+catch(Exception e){
+}

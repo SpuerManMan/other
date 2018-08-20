@@ -1,0 +1,96 @@
+1. mongodb和php的安装配置
+
+首先，需要安装mongodb和php。
+
+mongodb的安装方法见http://blog.csdn.net/u013378306/article/details/52062593。
+
+php的安装方法见http://blog.csdn.net/u013378306/article/details/52063324。
+
+
+需要说明一下，安装好php之后，还需要安装phpize，这是一个php扩展模块管理工具。如果是centos系统，只需要简单的一个命令即可安装phpize：
+
+yum install php-devel 
+
+
+
+2. 安装mongo
+
+mongo是mongodb的php driver，没有这个，rockmongo是无法连接到mongodb的。
+
+mongo的下载页面在这里：
+
+http://pecl.php.net/package/mongo
+
+在下面的列表里找到最新的版本，然后复制链接，比如说链接是：
+
+http://pecl.php.net/get/mongo-1.4.5.tgz
+
+那么在服务器上依次执行如下的命令，即可完成mongo的安装（其中phpize那一步是为了将mongo这个模块加入php）：
+
+wget http://pecl.php.net/get/mongo-1.4.5.tgz
+
+tar -xzvf mongo-1.4.5.tgz
+
+cd mongo-1.4.5
+
+phpize
+
+./configure
+
+make
+
+make install
+
+
+在php.ini之中加上这样一句，加载mongo模块： 
+
+extension=mongo.so
+
+
+
+
+
+3. 安装rockmongo
+
+rockmongo官网下载页面在这里：
+
+http://rockmongo.com/downloads
+
+下载地址:
+https://webscripts.softpedia.com/script/Database-Tools/RockMongo-82340.html
+
+解压到var/www/html目录下
+
+用编辑器打开config.php，修改host, port, admins等参数
+
+在浏览器中访问index.php，比如说：http://localhost/rockmongo/index.php
+
+使用用户名和密码登录，默认为"admin"和"admin"
+
+
+
+4. 使用rockmongo
+
+     配置Apache
+
+修改/etc/httpd/conf/httpd.conf文件，添加如下内容：
+
+Alias /rockmongo "/var/rockmongo/"
+<Directory "/var/rockmongo">
+    Options None
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+</Directory>
+
+注意 要修改rokmongo目录权限，chmod 777 -R rockmongo/
+/var/rockmong/是rockmongo解压后的目录。由于在Apache中，我还配置了virtual host配合后端的tomcat来处理另外一个应用，所以还在Virtual Host的
+
+配置增加了下面一行：ProxyPass /rockmongo !
+添加index.php和php扩展名支持
+<IfModule dir_module>DirectoryIndex index.php index.html</IfModule>
+使httpd支持php
+AddType application/x-httpd-php .phpAddType application/x-httpd-php-source .phps
+
+完成配置后，重新启动httpd服务：
+service httpd restart

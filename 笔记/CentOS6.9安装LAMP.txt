@@ -1,0 +1,126 @@
+CentOS6.9安装LAMP(Centos6.9+Apache2.2.15+mysql5.1.73+php5.3.3)
+---------------------------------------------------------------------
+
+
+检查Apache是否已经安装
+[root@localhost ~]# httpd -v
+
+查看Apache包是否可用
+[root@localhost ~]# yum list | grep httpd
+
+使用yum安装Apache，并且安装扩展模块
+[root@localhost ~]# yum -y install httpd httpd-manual httpd-devel mod_ssl mod_perl mod_auth_mysql
+
+设置开机自动启动Apache服务
+[root@localhost ~]# chkconfig httpd on
+
+启动Apache服务
+[root@localhost ~]# service httpd start
+
+重新Apache服务
+[root@localhost ~]# service httpd restart
+
+查看服务状态
+[root@localhost ~]# service httpd status
+
+判断是否安装成功Apache服务
+[root@localhost ~]# curl http://127.0.0.1
+
+将原有配置文件备份
+[root@localhost ~]# cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak
+
+----------------------------------------------------------------------
+
+检查mysql是否已经安装
+[root@localhost ~]# yum list installed | grep mysql
+
+查看mysql包是否可用
+[root@localhost ~]# yum list | grep mysql
+
+安装MySql
+[root@localhost ~]# yum -y install mysql-server
+
+设置开机启动Mysql
+[root@localhost ~]# chkconfig mysqld on
+
+设置开启服务
+[root@localhost ~]# service mysqld start
+
+重新开启服务
+[root@localhost ~]# service mysqld restart
+
+查看服务状态
+[root@localhost ~]# service mysqld status
+
+登陆MySql，输入用户名和密码
+[root@localhost ~]# mysql -uroot -p
+
+修改当前用户密码
+mysql>SET PASSWORD = PASSWORD('Abc123!_');
+
+开启远程登录，授权root远程登录,开放3306端口
+mysql>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Abc123!_' WITH GRANT OPTION;
+
+命令立即执行生效
+mysql>flush privileges;
+
+退出mysql
+mysql>exit;
+
+将原有配置文件备份
+[root@localhost ~]# cp /etc/my.cnf /etc/my.cnf.bak
+
+----------------------------------------------------------------------
+
+检查php是否已经安装
+[root@localhost ~]# php -v
+
+查看php包是否可用
+[root@localhost ~]# yum list | grep php
+
+使用yum安装php，并且安装扩展模块
+[root@localhost ~]# yum -y install php php-odbc php-mysql php-devel php-xml php-gd php-imap php-ldap php-xmlrpc php-common php-process php-bcmath php-cli php-fpm php-pear php-pdo php-pecl-xhprof php-pecl-xdebug php-phpunit-PHPUnit php-mbstring php-mcrypt php-pecl-apcu php-opcache
+
+----------------------------------------------------------------------
+
+检查vsftpd是否已经安装
+[root@localhost ~]# vsftpd -v
+
+查看vsftpd包是否可用
+[root@localhost ~]# yum list | grep vsftpd
+
+安装默认的vsftpd
+[root@localhost ~]# yum -y install vsftpd
+
+设置vsftpd服务开机自启
+[root@localhost ~]# chkconfig vsftpd on
+
+设置开启服务
+[root@localhost ~]# service vsftpd start
+
+重新开启服务
+[root@localhost ~]# service vsftpd restart
+
+查看服务状态
+[root@localhost ~]# service vsftpd status
+
+将原有配置文件备份
+[root@localhost ~]# cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak
+
+
+----------------------------------------------------------------------
+
+确保服务器系统处于最新状态
+[root@localhost ~]# yum -y upgrade
+
+重启服务器
+[root@localhost ~]# reboot
+
+
+
+装完之后就去下载phpwind8.5 utf-8的版本，然后把upload改成phpwind丢到/var/www/html下，注意一下在做这些操作前要关闭防火墙和selinux，丢完之后最好将phpwind整个都赋予777的权限，然后去到界面通过http://ip/phpwind访问安装即可
+
+
+centos 7.2 LAMP环境搭建: https://blog.csdn.net/u012980068/article/details/70228424
+CentOS6.9安装LAMP: https://yq.aliyun.com/articles/326942
+

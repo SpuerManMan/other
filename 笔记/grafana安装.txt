@@ -1,0 +1,10 @@
+https://grafana.com/grafana/download
+
+
+wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.2.2-1.x86_64.rpm 
+sudo yum localinstall grafana-5.2.2-1.x86_64.rpm 
+
+安装完成后启动服务：systemctl start grafana-server，
+记住要关闭防火墙喔，systemctl stop firewalld（临时关闭）和systemctl disable firewalld（禁止开机启动）
+
+然后访问，ip+3000端口，默认用户名和密码是admin;

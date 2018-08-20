@@ -1,0 +1,5 @@
+1、查看进程号
+ps -ef | grep "XXX" | grep -v "grep" | awk -F ' ' '{print $2}'
+
+2、
+date -d "yesterday" +"%Y"

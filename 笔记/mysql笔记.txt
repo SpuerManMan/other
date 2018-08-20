@@ -1,0 +1,5 @@
+查看当前所有连接的详细资料:
+./mysqladmin -uadmin -p -h10.140.1.1 processlist
+
+只查看当前连接数(Threads就是连接数.):
+./mysqladmin  -uadmin -p -h10.140.1.1 status

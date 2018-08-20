@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.mamicode.com/info-detail-1889650.html -->
+<html lang="zh-cn"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="znBdcsStyle" type="text/css">.bdcs-container .bdcs-main,.bdcs-container .bdcs-main *{box-sizing:content-box;margin:0;padding:0;float:none;clear:none;overflow:hidden;white-space:nowrap;word-wrap:normal;border:0;background:0 0;width:auto;height:auto;max-width:none;min-width:none;max-height:none;min-height:none;border-radius:0;box-shadow:none;transition:none;text-align:left}.bdcs-container .bdcs-clearfix:after{content:'';display:block;clear:both;height:0}.bdcs-container .bdcs-clearfix{zoom:1}.bdcs-container .bdcs-main{overflow:visible}.bdcs-container .bdcs-search{display:block;overflow:visible;position:relative;border-style:solid}.bdcs-container .bdcs-search-form-input-wrap{display:inline-block}.bdcs-container .bdcs-search-form-input{border-width:1px;border-style:solid;display:inline-block;vertical-align:top;text-indent:5px;background-color:#fff;float:left}.bdcs-container .bdcs-search-form-input:focus{border-width:1px;border-style:solid;outline:0}.bdcs-container .bdcs-search-form-submit-wrap{display:inline-block}.bdcs-container .bdcs-search-form-submit{display:inline-block;cursor:pointer;border-width:1px;border-style:solid;vertical-align:top;text-align:center;width:50px;//_overflow:hidden}.bdcs-container .bdcs-search-form-submit-magnifier{width:45px;padding:0;text-indent:-999em;overflow:hidden;background:url(http://znsv.baidu.com/static/customer-search/component/search/magnifier-icon.png) no-repeat center center;_background:url(http://znsv.baidu.com/static/customer-search/component/search/magnifier-icon_ie6.png) no-repeat center center}div#default-searchbox .default-channel-meun{position:relative;width:75px;display:inline-block;vertical-align:middle;cursor:pointer;background:#fff;float:left;overflow:visible}div#default-searchbox .default-channel-current{border:1px solid;position:relative;width:100%;border-right:0}div#default-searchbox .default-channel-current span{margin-left:8px}div#default-searchbox .default-channel-current i{overflow:hidden;width:0;height:0;border-width:6px 6px 0;border-color:#9E9E9E #fff;border-style:solid;display:block;position:absolute;right:10px;top:11px}div.cse-default-channel-container{display:block;position:absolute;z-index:30061000000}div.cse-default-channel-container .default-channel-list{display:none;width:99%;list-style:none;background:#fff;border:1px solid #DDD;border-top:0;margin:0;padding:0}div.cse-default-channel-container .default-channel-list li{background:0 0;line-height:24px;list-style:none;display:block;padding-left:7px;cursor:pointer}div.cse-default-channel-container .default-channel-list li:hover{background:#DDD}.bdcs-container .bdcs-search-form-input-wrap{}.bdcs-container .bdcs-search-form-input-notspan{margin-left:0px;font-family:Arial,SimSun,sans-serif;color:#000000;font-size:14px;}.bdcs-container .bdcs-search-form-input .icon-nofocus{left:;right:;top:;height:;width:;}.bdcs-container .bdcs-search{width:299px;height:36px;overflow:hidden;border-color:#1a89ed;border-radius:5px;border-width:2px;box-shadow:none;background-color:none;}.bdcs-container .bdcs-search-form-input{border-color:#ffffff;margin-right:0px;width:246px;height:34px;line-height:34px;font-family:Arial,SimSun,sans-serif;color:#000000;font-size:14px;border-radius:1px;background-color:#FFFFFF;}.bdcs-container .bdcs-search-form-input:focus{border-color:#1a89ed;}.bdcs-container .bdcs-search-form-submit-wrap{}.bdcs-container .bdcs-search-form-submit{border-color:#1c89ea;height:34px;width:50px;background-color:#1c89ea;color:#ffffff;font-family:Arial,SimSun,sans-serif;font-size:14px;border-radius:0px;}.bdcs-container .bdcs-search-form-submit{*height:36px;*margin-top:1px;}.bdcs-container .bdcs-search-form-submit{line-height:34px;}.bdcs-container .bdcs-search-form-input{margin-right:-1px;}#bdcs-rec{display:none;}</style><meta name="keywords" content="码迷,mamicode.com,互联网,软件开发,开源,asp,asp.net,android,apple,jsp,php,Windows,数据库,HTML,JS,CSS,技术文章,游戏,手机相关"><meta name="description" content="    前序准备工作： 安装工具： 常用的软件安装，环境变量配置，略……不会的可以百度 ant配置： 3.cmd进入build.xml文件目录，使用ant命令测试是否生效 jmeter配置： 打开jmeter安装目录apache-jmeter-3.2\bin中的jmeter.properties，把jmet ..."><title>
+	ant+jmeter+jenkins+git持续集成以及邮件报告展示
+</title><link href="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/css.css" type="text/css" rel="stylesheet">
+<script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/push.js"></script><script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/osd.js"></script><script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/ca-pub-8616102841876629.js"></script><script type="text/javascript" async="" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/js"></script><script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/hm.js"></script><script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/mamicode_adload.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?408b7cb341bcbccbc03cf31a305b01dd";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<link rel="stylesheet" type="text/css" href="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/prettify.css">
+    <script type="text/javascript" charset="utf-8" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/prettify.js"></script>
+<link rel="preload" href="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/integrator.js"><script type="text/javascript" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/integrator.js"></script></head>
+<body>
+    <div class="width100bi height23px divbackgroundcolor overflowauto">
+    <div class="width1000px divmargin0auto">
+        <div class="divfloatleft">
+        </div>
+        <div class="divfloatright">
+            <div id="logintopdescription" class="paddingtop3"><a href="http://member.mamicode.com/login.aspx">[登录]</a>&nbsp;&nbsp;<a href="http://member.mamicode.com/reg.aspx">[注册]</a></div>
+        </div>
+    </div>
+</div>
+<div class="width1000px divmargin0auto margintop20bottom20 overflowauto">
+    <div class="width120px divfloatleft">
+        <a href="http://www.mamicode.com/" title="码迷，mamicode.com">
+            <img src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/logo.png" alt="码迷，mamicode.com" width="109" height="60" border="0">
+        </a>
+    </div>
+    <div class="width880px divfloatright">
+        <div class="menuDiv">
+            <ul>
+                <li class="bottomline width10px">&nbsp;</li>
+                <li id="default-aspx" class="title0"><a href="http://www.mamicode.com/" title="码迷，mamicode.com">首页</a></li>
+                <li id="infolist-2" class="title1"><a href="http://www.mamicode.com/info-list-2-1.html" title="Web开发">Web开发</a></li>
+                <li id="infolist-3" class="title1"><a href="http://www.mamicode.com/info-list-3-1.html" title="Windows程序">Windows程序</a></li>
+                <li id="infolist-4" class="title1"><a href="http://www.mamicode.com/info-list-4-1.html" title="编程语言">编程语言</a></li>
+                <li id="infolist-5" class="title1"><a href="http://www.mamicode.com/info-list-5-1.html" title="数据库">数据库</a></li>
+                <li id="infolist-6" class="title1"><a href="http://www.mamicode.com/info-list-6-1.html" title="移动开发">移动开发</a></li>
+                <li id="infolist-8" class="title1"><a href="http://www.mamicode.com/info-list-8-1.html" title="系统相关">系统相关</a></li>
+                <li id="infolist-9" class="title1"><a href="http://www.mamicode.com/info-list-9-1.html" title="微信">微信</a></li>
+                <li id="infolist-11" class="title1"><a href="http://www.mamicode.com/info-list-11-1.html" title="其他好文">其他好文</a></li>
+                <li id="memberhtml" class="title1"><a href="http://www.mamicode.com/member.html" title="会员">会员</a></li>
+                <li class="bottomline width10px">&nbsp;</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">        mamicode_adload('top_menu');</script>
+    <div class="divdaohang">
+        <div class="divtitlefont">
+            <a href="http://www.mamicode.com/" title="码迷首页">首页</a>
+            <span id="lbltitle"> &gt; <a href="http://www.mamicode.com/infolist-11-1.html">其他好文</a> &gt; 详细</span>
+        </div>
+    </div>
+    <div class="divmain">
+        <div class="width70bi divfloatleft" style="min-height: 2000px;">
+            <div class="marginright20">
+                <script type="text/javascript">                    mamicode_adload('title_before');</script><div class="margintop20bottom20"><a href="https://juejin.im/welcome?utm_source=mami&amp;utm_medium=banner&amp;utm_content=huoyue&amp;utm_campaign=q2_website" target="_blank" onclick="ad_analysis(&#39;juejin&#39;)"><img src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/690x173_1.jpg" border="0" width="690" height="173"></a></div>
+                <div class="detailtitle divtextaligncenter divborderbottomdotted">
+                    <h1 id="Htitle" class="detailtitle">ant+jmeter+jenkins+git持续集成以及邮件报告展示</h1>
+                </div>
+                <div class="detail1 divtextaligncenter">
+                    时间：<span id="Label2" class="colorlv">2017-07-05 20:03:41</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp; 阅读：<span id="Label1" class="colorCheng">1004</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp; 评论：<span id="lblcommentcount" class="colorCheng">0</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp; 收藏：<span id="lblfavorite" class="colorCheng">0</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a id="infofavorite" class="acursorpointer" onclick="infofavorite_click();">[点我收藏+]</a>
+                </div>
+                <script type="text/javascript">                    mamicode_adload('content_before');</script><div class="margintop10bottom10"><script async="" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/adsbygoogle.js"></script><ins class="adsbygoogle" style="display: block; text-align: center; height: 173px;" data-ad-format="fluid" data-ad-layout="in-article" data-ad-client="ca-pub-8616102841876629" data-ad-slot="3249086282" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:173px;margin:0;padding:0;position:relative;visibility:visible;width:691px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:173px;margin:0;padding:0;position:relative;visibility:visible;width:691px;background-color:transparent;"><iframe width="691" height="173" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:691px;height:173px;"></iframe></ins></ins></ins><script>     (adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+                <div class="detailcontennt">
+                    <span id="Label3"><p>标签：<a href="http://www.mamicode.com/so/1/cond" title="cond">cond</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/%e9%80%89%e6%8b%a9" title="选择">选择</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/oca" title="oca">oca</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/jpg" title="jpg">jpg</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/should" title="should">should</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/dshow" title="dshow">dshow</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/any" title="any">any</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/com" title="com">com</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/ice" title="ice">ice</a>&nbsp;&nbsp;&nbsp;</p><p><span style="font-size: 15px"><strong>前序准备工作：</strong></span></p>
+<ol>
+<li>ant--下载地址：http://ant.apache.org/bindownload.cgi</li>
+<li>jmeter--下载地址：http://jmeter.apache.org/download_jmeter.cgi</li>
+<li>jenkins--下载地址：https://jenkins.io/</li>
+<li>git--下载地址：https://git-scm.com/downloads</li>
+<li>jdk--http://www.oracle.com/technetwork/java/javase/downloads/index.html</li>
+</ol>
+<p><span style="font-size: 15px"><strong>安装工具：</strong></span></p>
+<p>　　常用的软件安装，环境变量配置，略……不会的可以百度</p>
+<p><span style="font-size: 15px"><strong>ant配置：</strong></span></p>
+<ol>
+<li>将jmeter安装目录下\apache-jmeter-3.2\extras的ant-jmeter-1.1.1.jar复制到ant安装目录下apache-ant-1.10.1\lib</li>
+<li>新建build.xml文件，按照下面的模版进行适当的修改。</li>
+</ol>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff">&lt;?</span><span style="color: #ff00ff">xml version="1.0" encoding="UTF-8"</span><span style="color: #0000ff">?&gt;</span>
+
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">project </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="ant-jmeter-test"</span><span style="color: #ff0000"> default</span><span style="color: #0000ff">="run"</span><span style="color: #ff0000"> basedir</span><span style="color: #0000ff">="."</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">tstamp</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">format </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="time"</span><span style="color: #ff0000"> pattern</span><span style="color: #0000ff">="yyyyMMddhhmm"</span> <span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">tstamp</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">environment</span><span style="color: #0000ff">="env"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="ReportName"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="TestReport"</span> <span style="color: #0000ff">/&gt;</span>
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 需要改成自己本地的 Jmeter 目录</span><span style="color: #008000">--&gt;</span> 
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.home"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="D:\work\soft\apache-jmeter-3.2"</span> <span style="color: #0000ff">/&gt;</span>
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> jmeter生成jtl、html格式的结果报告的路径</span><span style="color: #008000">--&gt;</span> 
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.result.dir"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${env.WORKSPACE}/results/${env.BUILD_ID}"</span> <span style="color: #0000ff">/&gt;</span>
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 生成的报告的前缀</span><span style="color: #008000">--&gt;</span>  
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.result.jtlName"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${jmeter.result.dir}/${ReportName}.jtl"</span> <span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.result.htmlName"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${jmeter.result.dir}/${ReportName}.html"</span> <span style="color: #0000ff">/&gt;</span>
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> GIT拉取到本地目录路径 </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="githome"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${env.WORKSPACE}/autoscript/汇总/"</span> <span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="run"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo </span><span style="color: #ff0000">message</span><span style="color: #0000ff">="start..."</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">antcall </span><span style="color: #ff0000">target</span><span style="color: #0000ff">="clean"</span> <span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">antcall </span><span style="color: #ff0000">target</span><span style="color: #0000ff">="test"</span> <span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">antcall </span><span style="color: #ff0000">target</span><span style="color: #0000ff">="report"</span> <span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="clean"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">mkdir </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${env.WORKSPACE}/results/${env.BUILD_ID}"</span> <span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+        
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="test"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">taskdef </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter"</span><span style="color: #ff0000"> classname</span><span style="color: #0000ff">="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask"</span> <span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">jmeter </span><span style="color: #ff0000">jmeterhome</span><span style="color: #0000ff">="${jmeter.home}"</span><span style="color: #ff0000"> resultlog</span><span style="color: #0000ff">="${jmeter.result.jtlName}"</span><span style="color: #0000ff">&gt;</span>
+            <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 声明要运行的脚本"*.jmx"指包含此目录下的所有jmeter脚本</span><span style="color: #008000">--&gt;</span>
+             <span style="color: #0000ff">&lt;</span><span style="color: #800000">testplans </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${githome}\坐席基本功能"</span><span style="color: #ff0000"> includes</span><span style="color: #0000ff">="坐席基本功能汇总.jmx"</span> <span style="color: #0000ff">/&gt;</span>
+            
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.output_format"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="xml"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">jmeter</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">path </span><span style="color: #ff0000">id</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${jmeter.home}/lib"</span><span style="color: #ff0000"> includes</span><span style="color: #0000ff">="xalan*.jar"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${jmeter.home}/lib"</span><span style="color: #ff0000"> includes</span><span style="color: #0000ff">="serializer*.jar"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">path</span><span style="color: #0000ff">&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="report"</span><span style="color: #0000ff">&gt;</span>
+     <span style="color: #0000ff">&lt;</span><span style="color: #800000">tstamp</span><span style="color: #0000ff">&gt;</span> <span style="color: #0000ff">&lt;</span><span style="color: #800000">format </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="report.datestamp"</span><span style="color: #ff0000"> pattern</span><span style="color: #0000ff">="yyyy/MM/dd HH:mm"</span> <span style="color: #0000ff">/&gt;&lt;/</span><span style="color: #800000">tstamp</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">xslt 
+              </span><span style="color: #ff0000">classpathref</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #ff0000">
+              force</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000">
+              in</span><span style="color: #0000ff">="${jmeter.result.jtlName}"</span><span style="color: #ff0000">
+              out</span><span style="color: #0000ff">="${jmeter.result.htmlName}"</span><span style="color: #ff0000">
+              style</span><span style="color: #0000ff">="${jmeter.home}/extras/jmeter.results.shanhe.me.xsl"</span><span style="color: #0000ff">&gt;</span>
+              <span style="color: #0000ff">&lt;</span><span style="color: #800000">param </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="dateReport"</span><span style="color: #ff0000"> expression</span><span style="color: #0000ff">="${report.datestamp}"</span><span style="color: #0000ff">/&gt;</span>
+              <span style="color: #0000ff">&lt;/</span><span style="color: #800000">xslt</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #008000">&lt;!--</span><span style="color: #008000"> 因为上面生成报告的时候，不会将相关的图片也一起拷贝至目标目录，所以，需要手动拷贝 </span><span style="color: #008000">--&gt;</span> 
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">copy </span><span style="color: #ff0000">todir</span><span style="color: #0000ff">="${jmeter.result.dir}"</span><span style="color: #0000ff">&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${jmeter.home}/extras"</span><span style="color: #0000ff">&gt;</span>
+                <span style="color: #0000ff">&lt;</span><span style="color: #800000">include </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="collapse.png"</span> <span style="color: #0000ff">/&gt;</span>
+                <span style="color: #0000ff">&lt;</span><span style="color: #800000">include </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="expand.png"</span> <span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;/</span><span style="color: #800000">fileset</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">copy</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #0000ff">&lt;/</span><span style="color: #800000">project</span><span style="color: #0000ff">&gt;</span></pre>
+</div>
+<p><br>　　 &nbsp;3.cmd进入build.xml文件目录，使用ant命令测试是否生效</p>
+<p><span style="font-size: 15px"><strong>jmeter配置：</strong></span></p>
+<p><span style="font-size: 14px">　　打开jmeter安装目录apache-jmeter-3.2\bin中的jmeter.properties，把jmeter.save.saveservice.output_format=csv &nbsp;值修改为xml，即：　　 &nbsp; &nbsp; &nbsp; jmeter.save.saveservice.output_format=xml</span></p>
+<p><strong><span style="font-size: 14px">git配置：</span></strong></p>
+<p><span style="font-size: 14px">由于我本机装了sourcetree和git，私钥已经生成过，所以不知道是否有影响，可以先跳过，如果后续的jenkins无法集成git，可以参考这篇文章，后续我也会更新在新环境下的配置流程http://www.cnblogs.com/xuange306/p/6403907.html</span></p>
+<p><span style="font-size: 14px">jenkins配置：</span></p>
+<ol>
+<li><span style="font-size: 14px">打开jenkins，进入插件管理，安装插件：<a class="display-name" href="http://wiki.jenkins-ci.org/display/JENKINS/Performance+Plugin">Performance Plugin</a>、<a class="display-name" href="http://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin">HTML Publisher plugin</a>、<a class="display-name" href="http://wiki.jenkins-ci.org/display/JENKINS/Email-ext+plugin">Email Extension Plugin</a>、<a class="display-name" href="https://wiki.jenkins-ci.org/display/JENKINS/Ant+Plugin">Ant Plugin</a>……附上我的插件安装列表</span></li>
+
+
+
+
+
+</ol>
+<p><span style="font-size: 14px"><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305221123.png"></span></p>
+<p>　　2.进入系统管理的Global Tool Configuration，配置ant、jdk、git的安装路径</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305229912.png"></p>
+<p>&nbsp;</p>
+<p>　　3.进入系统管理的系统设置，进行全局的配置。注意：系统管理员邮件地址一定要跟邮件配置的发件人地址一致</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305235772.png"></p>
+<p>　　4. 回到jenkins主页，新建一个job，选择自由风格&nbsp;</p>
+<ul>
+<li><strong>源码管理</strong></li>
+<ul>
+<li>　　选择git，Repository URL输入git地址：http://192.168.***.10/**r/**ter.git</li>
+<li>　　Credentials点击ADD，增加自己的git帐号。如：</li>
+<li><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305236749.jpg"></li>
+<li>　　Credentials选择上步增加的帐号</li>
+<li>Branch Specifier (blank for ‘any‘)输入自己项目的分支，我的项目在master下，就输入*/master</li>
+
+
+
+</ul>
+<li><strong>构建触发器</strong>
+<ul>
+<li>　　选择Build periodically。输入30 22 * * * &nbsp; &nbsp; --代表每天的22：30执行</li>
+
+
+
+</ul>
+
+
+
+</li>
+<li><strong>构建</strong>
+<ul>
+<li>增加构建步骤--Invoke ant：Ant Version选择上面步骤配置ant的变量名称ANT HOME；Targets输入run；Build File输入上述步骤的ant build.xml的文件路径：D:\work\antxml\build-通信平台.xml</li>
+<li>增加构建步骤--Execute Windows batch command：输入
+<div class="cnblogs_code">
+<pre><span style="color: #000000">echo %WORKSPACE%
+echo %BUILD_ID%
+cd results
+cd %BUILD_ID%</span></pre>
+</div>
+<p>&nbsp;</p>
+</li>
+</ul>
+</li>
+<li><strong>构建后操作</strong>
+<ul>
+<li>增加Publish HTML reports：HTML directory to archive输入results\$BUILD_ID；Index page[s]输入TestReport.html；Report title输入HTML Report</li>
+<li>增加Publish Performance test result report：性能监控的，可以先忽略配置</li>
+<li>增加Editable Email Notification：基本配置介绍了，我之前的jenins文章有过介绍，额外增加一个附件的配置：Attachments输入results\$BUILD_ID\TestReport.html</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p>附上我的配置图：</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305252374.png"></p>
+<p>到此为止，jenkins的基本配置就算完成，保存后，点击立即构建，查看效果：</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305264093.jpg"></p>
+<p>&nbsp;</p>
+<p>可以看到有NAN的出现，下面我们开始对jenkins的报告进行优化。。。</p>
+<hr>
+<p>&nbsp;</p>
+<p>首先解决调NAN的问题</p>
+<p>&nbsp;1. 打开jmeter安装目录apache-jmeter-3.2\extras的build.xml，修改为如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff">&lt;?</span><span style="color: #ff00ff">xml version="1.0"</span><span style="color: #0000ff">?&gt;</span>
+<span style="color: #008000">&lt;!--</span><span style="color: #008000">
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+    
+       http://www.apache.org/licenses/LICENSE-2.0
+    
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+</span><span style="color: #008000">--&gt;</span>
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">project </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="ant-jmeter"</span><span style="color: #ff0000"> default</span><span style="color: #0000ff">="all"</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">description</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">
+
+        Sample build file for use with ant-jmeter.jar
+        See http://www.programmerplanet.org/pages/projects/jmeter-ant-task.php
+
+    To run a test and create the output report:
+        ant -Dtest=script
+
+    To run a test only:
+        ant -Dtest=script run
+
+    To run report on existing test output
+        ant -Dtest=script report
+
+    The "script" parameter is the name of the script without the .jmx suffix.
+
+    Additional options:
+        -Dshow-data=y - include response data in Failure Details
+        -Dtestpath=xyz - path to test file(s) (default user.dir).
+                         N.B. Ant interprets relative paths against the build file
+        -Djmeter.home=.. - path to JMeter home directory (defaults to parent of this build file)
+        -Dreport.title="My Report" - title for html report (default is ‘Load Test Results‘)
+    </span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">description</span><span style="color: #0000ff">&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="testpath"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${user.dir}"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.home"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${basedir}/.."</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="report.title"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="**接口自动化测试报告"</span><span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Name of test (without .jmx) </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="test"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="Test"</span><span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Should report include response data for failures? </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="show-data"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="n"</span><span style="color: #0000ff">/&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="format"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="2.1"</span><span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="style_version"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="_21"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">equals </span><span style="color: #ff0000">arg1</span><span style="color: #0000ff">="${format}"</span><span style="color: #ff0000"> arg2</span><span style="color: #0000ff">="2.1"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="funcMode"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">equals </span><span style="color: #ff0000">arg1</span><span style="color: #0000ff">="${show-data}"</span><span style="color: #ff0000"> arg2</span><span style="color: #0000ff">="y"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="funcMode"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="false"</span><span style="color: #0000ff">&gt;</span>
+      <span style="color: #0000ff">&lt;</span><span style="color: #800000">not</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">equals </span><span style="color: #ff0000">arg1</span><span style="color: #0000ff">="${show-data}"</span><span style="color: #ff0000"> arg2</span><span style="color: #0000ff">="y"</span><span style="color: #0000ff">/&gt;</span>
+      <span style="color: #0000ff">&lt;/</span><span style="color: #800000">not</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Allow jar to be picked up locally </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">path </span><span style="color: #ff0000">id</span><span style="color: #0000ff">="jmeter.classpath"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${basedir}"</span><span style="color: #0000ff">&gt;</span>
+          <span style="color: #0000ff">&lt;</span><span style="color: #800000">include </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="ant-jmeter*.jar"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">fileset</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">path</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">taskdef
+        </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter"</span><span style="color: #ff0000">
+        classpathref</span><span style="color: #0000ff">="jmeter.classpath"</span><span style="color: #ff0000">
+        classname</span><span style="color: #0000ff">="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask"</span><span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="all"</span><span style="color: #ff0000"> depends</span><span style="color: #0000ff">="run,report"</span><span style="color: #0000ff">/&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="run"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>funcMode = ${funcMode}<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">delete </span><span style="color: #ff0000">file</span><span style="color: #0000ff">="${testpath}/${test}.html"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">jmeter
+            </span><span style="color: #ff0000">jmeterhome</span><span style="color: #0000ff">="${jmeter.home}"</span><span style="color: #ff0000">
+            testplan </span><span style="color: #0000ff">="${testpath}/${test}.jmx"</span><span style="color: #ff0000">
+            resultlog</span><span style="color: #0000ff">="${testpath}/${test}.jtl"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #008000">&lt;!--</span><span style="color: #008000">
+            &lt;jvmarg value="-Xincgc"/&gt;
+            &lt;jvmarg value="-Xmx128m"/&gt;
+            &lt;jvmarg value="-Dproperty=value"/&gt;
+            &lt;jmeterarg value="-qextra.properties"/&gt;
+        </span><span style="color: #008000">--&gt;</span>
+            <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Force suitable defaults </span><span style="color: #008000">--&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.output_format"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="xml"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.assertion_results"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="all"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.bytes"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="true"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="file_format.testlog"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${format}"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.response_data.on_error"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${funcMode}"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">jmeter</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="lib.dir"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${jmeter.home}/lib"</span><span style="color: #0000ff">/&gt;</span>
+
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Use xalan copy from JMeter lib directory to ensure consistent processing with Java 1.4+ </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">path </span><span style="color: #ff0000">id</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${lib.dir}"</span><span style="color: #ff0000"> includes</span><span style="color: #0000ff">="xalan*.jar"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${lib.dir}"</span><span style="color: #ff0000"> includes</span><span style="color: #0000ff">="serializer*.jar"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">path</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="report"</span><span style="color: #ff0000"> depends</span><span style="color: #0000ff">="xslt-report,copy-images"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>Report generated at ${report.datestamp}<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="xslt-report"</span><span style="color: #ff0000"> depends</span><span style="color: #0000ff">="_message_xalan"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">tstamp</span><span style="color: #0000ff">&gt;&lt;</span><span style="color: #800000">format </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="report.datestamp"</span><span style="color: #ff0000"> pattern</span><span style="color: #0000ff">="yyyy/MM/dd HH:mm"</span><span style="color: #0000ff">/&gt;&lt;/</span><span style="color: #800000">tstamp</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">xslt
+            </span><span style="color: #ff0000">classpathref</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #ff0000">
+            force</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000">
+            in</span><span style="color: #0000ff">="${testpath}/${test}.jtl"</span><span style="color: #ff0000">
+            out</span><span style="color: #0000ff">="${testpath}/${test}.html"</span><span style="color: #ff0000">
+            
+            style</span><span style="color: #0000ff">="${jmeter.home}/extras/jmeter-results-detail-report_21.xsl"</span><span style="color: #0000ff">&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">param </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="showData"</span><span style="color: #ff0000"> expression</span><span style="color: #0000ff">="${show-data}"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">param </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="titleReport"</span><span style="color: #ff0000"> expression</span><span style="color: #0000ff">="${report.title}"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">param </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="dateReport"</span><span style="color: #ff0000"> expression</span><span style="color: #0000ff">="${report.datestamp}"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">xslt</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008000">&lt;!--</span><span style="color: #008000">style="${basedir}/jmeter-results-detail-report${style_version}.xsl"&gt;</span><span style="color: #008000">--&gt;</span>
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Copy report images if needed </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="copy-images"</span><span style="color: #ff0000"> depends</span><span style="color: #0000ff">="verify-images"</span><span style="color: #ff0000"> unless</span><span style="color: #0000ff">="samepath"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">copy </span><span style="color: #ff0000">file</span><span style="color: #0000ff">="${basedir}/expand.png"</span><span style="color: #ff0000"> tofile</span><span style="color: #0000ff">="${testpath}/expand.png"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">copy </span><span style="color: #ff0000">file</span><span style="color: #0000ff">="${basedir}/collapse.png"</span><span style="color: #ff0000"> tofile</span><span style="color: #0000ff">="${testpath}/collapse.png"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="verify-images"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="samepath"</span><span style="color: #0000ff">&gt;</span>
+                <span style="color: #0000ff">&lt;</span><span style="color: #800000">equals </span><span style="color: #ff0000">arg1</span><span style="color: #0000ff">="${testpath}"</span><span style="color: #ff0000"> arg2</span><span style="color: #0000ff">="${basedir}"</span> <span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Check that the xalan libraries are present </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="xalan.present"</span><span style="color: #0000ff">&gt;</span>
+          <span style="color: #0000ff">&lt;</span><span style="color: #800000">and</span><span style="color: #0000ff">&gt;</span>
+              <span style="color: #008000">&lt;!--</span><span style="color: #008000"> No need to check all jars; just check a few </span><span style="color: #008000">--&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">available </span><span style="color: #ff0000">classpathref</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #ff0000"> classname</span><span style="color: #0000ff">="org.apache.xalan.processor.TransformerFactoryImpl"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">available </span><span style="color: #ff0000">classpathref</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #ff0000"> classname</span><span style="color: #0000ff">="org.apache.xml.serializer.ExtendedContentHandler"</span><span style="color: #0000ff">/&gt;</span>
+          <span style="color: #0000ff">&lt;/</span><span style="color: #800000">and</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="_message_xalan"</span><span style="color: #ff0000"> unless</span><span style="color: #0000ff">="xalan.present"</span><span style="color: #0000ff">&gt;</span>
+          <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>Cannot find all xalan and/or serialiser jars<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>The XSLT formatting may not work correctly.<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>Check you have xalan and serializer jars in ${lib.dir}<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+
+<span style="color: #0000ff">&lt;/</span><span style="color: #800000">project</span><span style="color: #0000ff">&gt;</span></pre>
+</div>
+<p>2. 运行后的效果图如下：</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305283625.jpg"></p>
+<p>3. 显示没问题了，但是又碰到另一问题，这样的报告会把同一个接口自动归类的一个标签下面，如下图，正常签入下面有好多个签入接口，没有按照我脚本中的分组去显示</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305299251.jpg"></p>
+<hr>
+<p>接着优化</p>
+<p>1. 在网上找到一个模版，下载地址：http://shanhe.me/2011/06/07/new-xsl-stylesheet-for-jmeter-command-line-results-report</p>
+<p>2. 将下载好的模版存放在jmeter安装目录apache-jmeter-3.2\extras中。</p>
+<p>3. 再次打开jmeter安装目录apache-jmeter-3.2\extras的build.xml，将&lt;!--style="${basedir}/jmeter-results-detail-report${style_version}.xsl"&gt;--&gt;替换为下载的模版文件style="${basedir}/jmeter.results.shanhe.me.xsl"&gt;&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff">&lt;?</span><span style="color: #ff00ff">xml version="1.0"</span><span style="color: #0000ff">?&gt;</span>
+<span style="color: #008000">&lt;!--</span><span style="color: #008000">
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+    
+       http://www.apache.org/licenses/LICENSE-2.0
+    
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+</span><span style="color: #008000">--&gt;</span>
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">project </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="ant-jmeter"</span><span style="color: #ff0000"> default</span><span style="color: #0000ff">="all"</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">description</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">
+
+        Sample build file for use with ant-jmeter.jar
+        See http://www.programmerplanet.org/pages/projects/jmeter-ant-task.php
+
+    To run a test and create the output report:
+        ant -Dtest=script
+
+    To run a test only:
+        ant -Dtest=script run
+
+    To run report on existing test output
+        ant -Dtest=script report
+
+    The "script" parameter is the name of the script without the .jmx suffix.
+
+    Additional options:
+        -Dshow-data=y - include response data in Failure Details
+        -Dtestpath=xyz - path to test file(s) (default user.dir).
+                         N.B. Ant interprets relative paths against the build file
+        -Djmeter.home=.. - path to JMeter home directory (defaults to parent of this build file)
+        -Dreport.title="My Report" - title for html report (default is ‘Load Test Results‘)
+    </span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">description</span><span style="color: #0000ff">&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="testpath"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${user.dir}"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.home"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${basedir}/.."</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="report.title"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="**接口自动化测试报告"</span><span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Name of test (without .jmx) </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="test"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="Test"</span><span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Should report include response data for failures? </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="show-data"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="n"</span><span style="color: #0000ff">/&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="format"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="2.1"</span><span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="style_version"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="_21"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">equals </span><span style="color: #ff0000">arg1</span><span style="color: #0000ff">="${format}"</span><span style="color: #ff0000"> arg2</span><span style="color: #0000ff">="2.1"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="funcMode"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">equals </span><span style="color: #ff0000">arg1</span><span style="color: #0000ff">="${show-data}"</span><span style="color: #ff0000"> arg2</span><span style="color: #0000ff">="y"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="funcMode"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="false"</span><span style="color: #0000ff">&gt;</span>
+      <span style="color: #0000ff">&lt;</span><span style="color: #800000">not</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">equals </span><span style="color: #ff0000">arg1</span><span style="color: #0000ff">="${show-data}"</span><span style="color: #ff0000"> arg2</span><span style="color: #0000ff">="y"</span><span style="color: #0000ff">/&gt;</span>
+      <span style="color: #0000ff">&lt;/</span><span style="color: #800000">not</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Allow jar to be picked up locally </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">path </span><span style="color: #ff0000">id</span><span style="color: #0000ff">="jmeter.classpath"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${basedir}"</span><span style="color: #0000ff">&gt;</span>
+          <span style="color: #0000ff">&lt;</span><span style="color: #800000">include </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="ant-jmeter*.jar"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">fileset</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">path</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">taskdef
+        </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter"</span><span style="color: #ff0000">
+        classpathref</span><span style="color: #0000ff">="jmeter.classpath"</span><span style="color: #ff0000">
+        classname</span><span style="color: #0000ff">="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask"</span><span style="color: #0000ff">/&gt;</span>
+    
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="all"</span><span style="color: #ff0000"> depends</span><span style="color: #0000ff">="run,report"</span><span style="color: #0000ff">/&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="run"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>funcMode = ${funcMode}<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">delete </span><span style="color: #ff0000">file</span><span style="color: #0000ff">="${testpath}/${test}.html"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">jmeter
+            </span><span style="color: #ff0000">jmeterhome</span><span style="color: #0000ff">="${jmeter.home}"</span><span style="color: #ff0000">
+            testplan </span><span style="color: #0000ff">="${testpath}/${test}.jmx"</span><span style="color: #ff0000">
+            resultlog</span><span style="color: #0000ff">="${testpath}/${test}.jtl"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #008000">&lt;!--</span><span style="color: #008000">
+            &lt;jvmarg value="-Xincgc"/&gt;
+            &lt;jvmarg value="-Xmx128m"/&gt;
+            &lt;jvmarg value="-Dproperty=value"/&gt;
+            &lt;jmeterarg value="-qextra.properties"/&gt;
+        </span><span style="color: #008000">--&gt;</span>
+            <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Force suitable defaults </span><span style="color: #008000">--&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.output_format"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="xml"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.assertion_results"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="all"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.bytes"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="true"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="file_format.testlog"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${format}"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="jmeter.save.saveservice.response_data.on_error"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${funcMode}"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">jmeter</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">property </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="lib.dir"</span><span style="color: #ff0000"> value</span><span style="color: #0000ff">="${jmeter.home}/lib"</span><span style="color: #0000ff">/&gt;</span>
+
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Use xalan copy from JMeter lib directory to ensure consistent processing with Java 1.4+ </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">path </span><span style="color: #ff0000">id</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${lib.dir}"</span><span style="color: #ff0000"> includes</span><span style="color: #0000ff">="xalan*.jar"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">fileset </span><span style="color: #ff0000">dir</span><span style="color: #0000ff">="${lib.dir}"</span><span style="color: #ff0000"> includes</span><span style="color: #0000ff">="serializer*.jar"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">path</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="report"</span><span style="color: #ff0000"> depends</span><span style="color: #0000ff">="xslt-report,copy-images"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>Report generated at ${report.datestamp}<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="xslt-report"</span><span style="color: #ff0000"> depends</span><span style="color: #0000ff">="_message_xalan"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">tstamp</span><span style="color: #0000ff">&gt;&lt;</span><span style="color: #800000">format </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="report.datestamp"</span><span style="color: #ff0000"> pattern</span><span style="color: #0000ff">="yyyy/MM/dd HH:mm"</span><span style="color: #0000ff">/&gt;&lt;/</span><span style="color: #800000">tstamp</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">xslt
+            </span><span style="color: #ff0000">classpathref</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #ff0000">
+            force</span><span style="color: #0000ff">="true"</span><span style="color: #ff0000">
+            in</span><span style="color: #0000ff">="${testpath}/${test}.jtl"</span><span style="color: #ff0000">
+            out</span><span style="color: #0000ff">="${testpath}/${test}.html"</span><span style="color: #ff0000">
+            
+            style</span><span style="color: #0000ff">="${basedir}/jmeter.results.shanhe.me.xsl"</span><span style="color: #0000ff">&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">param </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="showData"</span><span style="color: #ff0000"> expression</span><span style="color: #0000ff">="${show-data}"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">param </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="titleReport"</span><span style="color: #ff0000"> expression</span><span style="color: #0000ff">="${report.title}"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">param </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="dateReport"</span><span style="color: #ff0000"> expression</span><span style="color: #0000ff">="${report.datestamp}"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">xslt</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008000">&lt;!--</span><span style="color: #008000">style="${basedir}/jmeter-results-detail-report${style_version}.xsl"&gt;</span><span style="color: #008000">--&gt;</span>
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Copy report images if needed </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="copy-images"</span><span style="color: #ff0000"> depends</span><span style="color: #0000ff">="verify-images"</span><span style="color: #ff0000"> unless</span><span style="color: #0000ff">="samepath"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">copy </span><span style="color: #ff0000">file</span><span style="color: #0000ff">="${basedir}/expand.png"</span><span style="color: #ff0000"> tofile</span><span style="color: #0000ff">="${testpath}/expand.png"</span><span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">copy </span><span style="color: #ff0000">file</span><span style="color: #0000ff">="${basedir}/collapse.png"</span><span style="color: #ff0000"> tofile</span><span style="color: #0000ff">="${testpath}/collapse.png"</span><span style="color: #0000ff">/&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="verify-images"</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="samepath"</span><span style="color: #0000ff">&gt;</span>
+                <span style="color: #0000ff">&lt;</span><span style="color: #800000">equals </span><span style="color: #ff0000">arg1</span><span style="color: #0000ff">="${testpath}"</span><span style="color: #ff0000"> arg2</span><span style="color: #0000ff">="${basedir}"</span> <span style="color: #0000ff">/&gt;</span>
+        <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #008000">&lt;!--</span><span style="color: #008000"> Check that the xalan libraries are present </span><span style="color: #008000">--&gt;</span>
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">condition </span><span style="color: #ff0000">property</span><span style="color: #0000ff">="xalan.present"</span><span style="color: #0000ff">&gt;</span>
+          <span style="color: #0000ff">&lt;</span><span style="color: #800000">and</span><span style="color: #0000ff">&gt;</span>
+              <span style="color: #008000">&lt;!--</span><span style="color: #008000"> No need to check all jars; just check a few </span><span style="color: #008000">--&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">available </span><span style="color: #ff0000">classpathref</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #ff0000"> classname</span><span style="color: #0000ff">="org.apache.xalan.processor.TransformerFactoryImpl"</span><span style="color: #0000ff">/&gt;</span>
+            <span style="color: #0000ff">&lt;</span><span style="color: #800000">available </span><span style="color: #ff0000">classpathref</span><span style="color: #0000ff">="xslt.classpath"</span><span style="color: #ff0000"> classname</span><span style="color: #0000ff">="org.apache.xml.serializer.ExtendedContentHandler"</span><span style="color: #0000ff">/&gt;</span>
+          <span style="color: #0000ff">&lt;/</span><span style="color: #800000">and</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">condition</span><span style="color: #0000ff">&gt;</span>
+
+    <span style="color: #0000ff">&lt;</span><span style="color: #800000">target </span><span style="color: #ff0000">name</span><span style="color: #0000ff">="_message_xalan"</span><span style="color: #ff0000"> unless</span><span style="color: #0000ff">="xalan.present"</span><span style="color: #0000ff">&gt;</span>
+          <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>Cannot find all xalan and/or serialiser jars<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>The XSLT formatting may not work correctly.<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+        <span style="color: #0000ff">&lt;</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>Check you have xalan and serializer jars in ${lib.dir}<span style="color: #0000ff">&lt;/</span><span style="color: #800000">echo</span><span style="color: #0000ff">&gt;</span>
+    <span style="color: #0000ff">&lt;/</span><span style="color: #800000">target</span><span style="color: #0000ff">&gt;</span>
+
+
+<span style="color: #0000ff">&lt;/</span><span style="color: #800000">project</span><span style="color: #0000ff">&gt;</span></pre>
+</div>
+<p>4.&nbsp;打开jmeter安装目录apache-jmeter-3.2\bin中的jmeter.properties，增加如下配置</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000">jmeter.save.saveservice.data_type=true
+jmeter.save.saveservice.label=true
+jmeter.save.saveservice.response_code=true
+# response_data is not currently supported for CSV output
+jmeter.save.saveservice.response_data=true
+# Save ResponseData for failed samples
+jmeter.save.saveservice.response_data.on_error=false
+jmeter.save.saveservice.response_message=true
+jmeter.save.saveservice.successful=true
+jmeter.save.saveservice.thread_name=true
+jmeter.save.saveservice.time=true
+jmeter.save.saveservice.subresults=true
+jmeter.save.saveservice.assertions=true
+jmeter.save.saveservice.latency=true
+jmeter.save.saveservice.connect_time=true
+jmeter.save.saveservice.samplerData=true
+jmeter.save.saveservice.responseHeaders=true
+jmeter.save.saveservice.requestHeaders=true
+jmeter.save.saveservice.encoding=false
+jmeter.save.saveservice.bytes=true
+jmeter.save.saveservice.url=true
+jmeter.save.saveservice.filename=true
+jmeter.save.saveservice.hostname=true
+jmeter.save.saveservice.thread_counts=true
+jmeter.save.saveservice.sample_count=true
+jmeter.save.saveservice.idle_time=true</span></pre>
+</div>
+<p>5. 进入jenkins，再次构建，查看报告：</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305315853.jpg"></p>
+<p>到这里，已经初步满足了我这次项目的需求，为了达到效果，我再报告中又增加了一个测试结果概要的描述。如下图：</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305327572.jpg"></p>
+<p>具体步骤是把jmeter-results-detail-report_21.xsl中的概要复制到jmeter.results.shanhe.me.xsl中，并修改css样式。详细报告可进我的网盘下载：链接: https://pan.baidu.com/s/1jIcb1ci&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+<p>贴一个最终发邮件的图吧：</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305339292.jpg"></p>
+<p>附件效果图：</p>
+<p><img alt="技术分享" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/20180110234305351011.jpg"></p><p><a href="http://www.mamicode.com/info-detail-1889650.html" title="ant+jmeter+jenkins+git持续集成以及邮件报告展示,mamicode.com" style="color:#ffffff" target="_blank">ant+jmeter+jenkins+git持续集成以及邮件报告展示</a></p><p>标签：<a href="http://www.mamicode.com/so/1/cond" title="cond">cond</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/%e9%80%89%e6%8b%a9" title="选择">选择</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/oca" title="oca">oca</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/jpg" title="jpg">jpg</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/should" title="should">should</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/dshow" title="dshow">dshow</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/any" title="any">any</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/com" title="com">com</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mamicode.com/so/1/ice" title="ice">ice</a>&nbsp;&nbsp;&nbsp;</p><p>原文地址：http://www.cnblogs.com/qiaoyeye/p/7122356.html</p></span>
+                </div>
+                <div id="divcomment">
+                    <div>
+                        <div class="divtextaligncenter paddingright2 overflowauto">
+                            <div class="detailcai" id="infono" onclick="infono_click();">
+                                <div class="detailcai1 colorboldlan">
+                                    踩</div>
+                                <div class="detailcai2 colorboldlan">
+                                    (<span id="spanNo">0</span>)</div>
+                            </div>
+                            <div class="detailzan" id="infoyes" onclick="infoyes_click();">
+                                <div class="detailzan1 colorboldHong">
+                                    赞</div>
+                                <div class="detailzan2 colorboldHong">
+                                    (<span id="spanYes">0</span>)</div>
+                            </div>
+                        </div>
+                        <div class="divtextalignright margintop10">
+                            <div class="width100bi paddingleft10right10">
+                                <span id="spanYesContent" class="colorboldHong"></span>&nbsp; <span id="spanNoContent" class="colorboldlan"></span>&nbsp; <span id="spanBadContent" class="colorboldHong">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divtextalignright margintop10">
+                        <span class="detailjubao" id="infobad" onclick="infobad_click();">举报</span>
+                    </div>
+                    <script type="text/javascript">                        mamicode_adload('content_after');</script><div class="margintop20">    <div class="divfloatleft">        <script async="" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/adsbygoogle.js"></script>        <!-- mamicode-infodetail-336x280-1 -->        <ins class="adsbygoogle" style="display: inline-block; width: 336px; height: 280px" data-ad-client="ca-pub-8616102841876629" data-ad-slot="6851602680" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:336px;height:280px;"></iframe></ins></ins></ins>        <script>            (adsbygoogle = window.adsbygoogle || []).push({});        </script>    </div>    <div class="divfloatright">        <script async="" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/adsbygoogle.js"></script>        <!-- mamicode-infodetail-336x280-2 -->        <ins class="adsbygoogle" style="display: inline-block; width: 336px; height: 280px" data-ad-client="ca-pub-8616102841876629" data-ad-slot="8328335888" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;width:336px;height:280px;"></iframe></ins></ins></ins>        <script>            (adsbygoogle = window.adsbygoogle || []).push({});        </script>    </div>    <div class="divfloatclear">    </div></div>
+                    <div id="comment" class="divtextalignleft margintop20">
+                        <div class="detailpinglun1">
+                            <span class="detailpinglun2 title6">评论</span> <span class="detailpinglun3">一句话评论（<span id="commentCount" class="colorboldHong">0</span>）</span>
+                        </div>
+                        <div class="paddingtop20">
+                            
+                            <div id="commentlistend" name="commentlistend" class="divtextaligncenter margintop20">
+                                <span id="lblpage">共<span class="pagecolorc">0</span>条&nbsp;&nbsp;</span>
+                            </div>
+                        </div>
+                        <div class="margintop20">
+                            <form method="post" action="http://www.mamicode.com/ajaxjs/info_detail_commentadd.aspx">
+                            <div class="divtextalignleft paddingtop20">
+                                <div id="commenthf" class="divbackgroundcolor1">
+                                </div>
+                                <div>
+                                    <textarea name="tbcommentcontent" id="tbcommentcontent" class="tb" style="width: 680px;
+                                        height: 120px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="divtextalignright paddingtop10 ">
+                                <span id="addCommentTishi" class="colorboldHong">登录后才能评论！</span>
+                                <span id="loginno"><input type="button" class="mbtn1" value="登录" onclick="location.href=&#39;http://member.mamicode.com/login.aspx?returnUrl=&#39;+document.URL.replace(new RegExp(&#39;&amp;&#39;, &#39;g&#39;), &#39;(_)&#39;)"></span>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">                    mamicode_adload('content_bottom');</script>
+            </div>
+        </div>
+        <div class="width30bi divfloatright">
+            
+            <div class="paddingbottom20">
+    <script type="text/javascript">        (function () { document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E')); var bdcs = document.createElement('script'); bdcs.type = 'text/javascript'; bdcs.async = true; bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=7490613033886828738' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date() / 3600000); var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bdcs, s); })();</script><div id="bdcs"><div class="bdcs-container"><meta http-equiv="x-ua-compatible" content="IE=9">   <!-- 嵌入式 -->  <div class="bdcs-main bdcs-clearfix" id="default-searchbox">      <div class="bdcs-search bdcs-clearfix" id="bdcs-search-inline">          <form action="http://zhannei.baidu.com/cse/search" method="get" target="_blank" class="bdcs-search-form" autocomplete="off" id="bdcs-search-form">              <input type="hidden" name="s" value="7490613033886828738">              <input type="hidden" name="entry" value="1">                                                                        <input type="text" name="q" class="bdcs-search-form-input" id="bdcs-search-form-input" placeholder="请输入关键词" style="height: 34px; line-height: 34px;">              <input type="submit" class="bdcs-search-form-submit " id="bdcs-search-form-submit" value="搜索">                       </form>      </div>                  </div>                           </div></div>
+</div>
+
+            <script type="text/javascript">                mamicode_adload('right_top');</script><div class="paddingbottom10">    <script async="" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/adsbygoogle.js"></script>    <!-- 1-mamicode-right-300x600 -->    <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 600px" data-ad-client="ca-pub-8616102841876629" data-ad-slot="8947049888" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><ins id="aswift_3_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><iframe width="300" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;width:300px;height:600px;"></iframe></ins></ins></ins>    <script>        (adsbygoogle = window.adsbygoogle || []).push({});    </script></div>
+            
+<div class="width99bi divborder">
+    <div class="divtitle">
+        <div id="infofile1_div1" class="divfloatleft divtitlefont">
+            分享档案</div>
+        <div class="divfloatright">
+            <a href="http://www.mamicode.com/infotimemore.html" title="分享档案更多" class="colorCheng">更多&gt;</a>
+        </div>
+    </div>
+    <div class="divtextalignleft paddingleft10right10 margintop10bottom10 heightline30px">
+        
+                <a class="taga" href="http://www.mamicode.com/info-time-20180517-1.html" target="_blank" title="2018年05月17日技术分享文章">
+                    2018年05月17日
+                    (890)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180516-1.html" target="_blank" title="2018年05月16日技术分享文章">
+                    2018年05月16日
+                    (1616)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180515-1.html" target="_blank" title="2018年05月15日技术分享文章">
+                    2018年05月15日
+                    (1513)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180514-1.html" target="_blank" title="2018年05月14日技术分享文章">
+                    2018年05月14日
+                    (1082)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180513-1.html" target="_blank" title="2018年05月13日技术分享文章">
+                    2018年05月13日
+                    (1264)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180512-1.html" target="_blank" title="2018年05月12日技术分享文章">
+                    2018年05月12日
+                    (1573)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180511-1.html" target="_blank" title="2018年05月11日技术分享文章">
+                    2018年05月11日
+                    (1412)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180510-1.html" target="_blank" title="2018年05月10日技术分享文章">
+                    2018年05月10日
+                    (1468)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180509-1.html" target="_blank" title="2018年05月09日技术分享文章">
+                    2018年05月09日
+                    (1460)</a><br>
+            
+                <a class="taga" href="http://www.mamicode.com/info-time-20180508-1.html" target="_blank" title="2018年05月08日技术分享文章">
+                    2018年05月08日
+                    (1329)</a><br>
+            
+    </div>
+</div>
+
+            
+<div class="width99bi margintop20 divborder">
+    <div class="divtitle">
+        <div id="infotop2_divtitle" class="divfloatleft divtitlefont">周排行</div>
+        <div class="divfloatright">
+            <img src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/j01.jpg" width="14" height="14" alt="mamicode.com排行更多图片"></div>
+        <div class="divfloatright">
+            <a href="http://www.mamicode.com/info-toplist-11-2-1.html" id="infotop2_amore" title="周排行更多">更多</a></div>
+    </div>
+    <div>
+        <ul>
+            
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-1263306.html" title="爱奇艺、优酷、腾讯视频竞品分析报告2016（一）" target="_blank">
+                        爱奇艺、优酷、腾讯视频竞品分析报告2016（一）
+                        &nbsp;<span class="colorlan">2016-04-04</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-1664586.html" title="网红淘宝店的成与败" target="_blank">
+                        网红淘宝店的成与败
+                        &nbsp;<span class="colorlan">2016-12-31</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-611316.html" title="【转】console.log 用法" target="_blank">
+                        【转】console.log 用法
+                        &nbsp;<span class="colorlan">2015-05-05</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-950910.html" title="白话空间统计之：Moran&#39;s I（莫兰指数）" target="_blank">
+                        白话空间统计之：Moran's I（莫兰指数）
+                        &nbsp;<span class="colorlan">2015-07-29</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-1610029.html" title="在深圳有娃的家长必须要懂的社保少儿医保，不然亏大了！（收藏）" target="_blank">
+                        在深圳有娃的家长必须要懂的社保少儿医保，不然亏大了！（收藏）
+                        &nbsp;<span class="colorlan">2016-11-16</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-1816919.html" title="前端页面适配的rem换算" target="_blank">
+                        前端页面适配的rem换算
+                        &nbsp;<span class="colorlan">2017-05-21</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-1180317.html" title="numpy数据类型dtype转换" target="_blank">
+                        numpy数据类型dtype转换
+                        &nbsp;<span class="colorlan">2016-01-14</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-1876054.html" title="nginx提示Job for nginx.service failed because the control的问题" target="_blank">
+                        nginx提示Job for nginx.service failed because the control的问题
+                        &nbsp;<span class="colorlan">2017-06-27</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-1008288.html" title="Echarts-axislabel文字过长导致显示不全或重叠" target="_blank">
+                        Echarts-axislabel文字过长导致显示不全或重叠
+                        &nbsp;<span class="colorlan">2015-08-27</span> </a>
+                    </li>
+                
+                    <li class="divullititle heightline25px divtextalignleft"><a href="http://www.mamicode.com/info-detail-2181296.html" title="Proxyee - down：百度云文件下载利器" target="_blank">
+                        Proxyee - down：百度云文件下载利器
+                        &nbsp;<span class="colorlan">2018-02-03</span> </a>
+                    </li>
+                
+        </ul>
+    </div>
+</div>
+
+            <script type="text/javascript">                mamicode_adload('right_bottom');</script><div id="xuanting1" style="margin-top:20px;width:300px;">    <script async="" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/adsbygoogle.js"></script>    <!-- mamicode-right-xuanting-300x600 -->    <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 600px" data-ad-client="ca-pub-8616102841876629" data-ad-slot="4406515082" data-adsbygoogle-status="done"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><ins id="aswift_4_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><iframe width="300" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;width:300px;height:600px;"></iframe></ins></ins></ins>    <script>        (adsbygoogle = window.adsbygoogle || []).push({});    </script></div>
+        </div>
+        <div class="divfloatclear">
+        </div>
+    </div>
+    <script type="text/javascript">        mamicode_adload('bottom');</script>
+    <div class="width1000px divmargin0auto paddingtop20bottom20">
+    <div class="width1000px divborder margintop20">
+        <div class="youqingtitle">
+            <a title="友情链接">友情链接</a>
+        </div>
+        <div class="youqingcontent">
+            <a href="http://www.lightinit.com/" target="_blank" title="互联网产品定制开发专家">兰亭集智</a>&nbsp;&nbsp;<a href="http://www.guozhihua.net/" target="_blank">国之画</a>&nbsp;&nbsp;<a href="http://tongji.baidu.com/" target="_blank">百度统计</a>&nbsp;&nbsp; <a href="http://www.cnzz.com/" target="_blank">
+                        站长统计</a>&nbsp;&nbsp;<a href="http://www.aliyun.com/" target="_blank">阿里云</a>&nbsp;&nbsp;<a href="http://www.cnplugins.com/" target="_blank">chrome插件</a>
+        </div>
+    </div>
+</div>
+<div class="bottomdiv">
+    <div class="width1000px divmargin0auto paddingtop20">
+        <div class="height30px divtextalignleft">
+            <a href="http://www.mamicode.com/about.html" title="mamicode.com关于我们">关于我们</a> - <a href="http://www.mamicode.com/contactus.html" title="mamicode.com联系我们">联系我们</a> - <a href="http://www.mamicode.com/guest.html" title="mamicode.com留言反馈">留言反馈</a>
+        </div>
+        <div class="height30px divtextalignleft">
+            © 2014 <a href="http://www.mamicode.com/" target="_blank" title="mamicode.com,技术分享">mamicode.com</a>
+            版权所有 京ICP备13008772号-2
+        </div>
+        <div class="divtextalignleft">
+            <span class="colorlan">迷上了代码！</span>
+        </div>
+        <div class="paddingtop20">
+            <script type="text/javascript">                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1254666564'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1254666564%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1254666564"><a href="http://www.cnzz.com/stat/website.php?web_id=1254666564" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/pic1.gif"></a></span><script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/z_stat.php" type="text/javascript"></script><script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/core.php" charset="utf-8" type="text/javascript"></script>
+            <script>
+                (function () {
+                    var bp = document.createElement('script');
+                    var curProtocol = window.location.protocol.split(':')[0];
+                    if (curProtocol === 'https') {
+                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                    }
+                    else {
+                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                    }
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">        var mid = ''; var id = '1889650'; var idm = 'f8652f'; var commentitemcount = '0'; var memberhost = 'http://member.mamicode.com/'; prettyPrint(); </script>
+    <script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/infodetail.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/member.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/mamicodejs.js"></script>
+<script type="text/javascript" src="./ant+jmeter+jenkins+git持续集成以及邮件报告展示_files/su.js"></script>
+
+
+<iframe id="google_osd_static_frame_4752746126614" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body></html>
