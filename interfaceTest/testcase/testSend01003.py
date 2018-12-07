@@ -36,7 +36,7 @@ class send01003(unittest.TestCase):
                     self.logger.info('接口请求结果:%s',repose.text)
                     time.sleep(0.5)
                     #验证接口响应结果
-                    self.assertEqual(repose.text ,self.result)
+                    self.assertEqual(repose.text ,"百度一下，你就知道")
 
      def testSend01003_2(self):
             if self.request=='post':
